@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>form validation </title>
+        <style>
+            body{
+                margin-top: 80px;
+                text-align: center;
+            }
+            
+            input[type=text],input[type=password]{
+                margin-top:30px;
+                border: 1px dotted blue;
+                border-top: transparent;
+                border-left: transparent;
+                border-right: transparent;
+             }
+            input{
+                margin-left: 5px;
+            }
+            input[type=submit]{
+                 margin-top:30px;
+            }
+            h2  {
+                color:brown;
+            }
+            #check{
+                width: 50px;
+                margin-top: -3%;
+                left:68%; 
+                
+                position: absolute;
+                 
+            }
+        </style>
+        <script>
+            function my(){
+                var ema= document.forms["myfo"]["eml"].value;
+                var ps= document.forms["myfo"]["pa"].value;
+                var ps1= document.forms["myfo"]["pa1"].value;
+                var a=ema.split(".");
+                if(ema== ""){
+                    alert("please enter your email");
+                    return false;
+                }
+                if(ema.indexOf("@",0)<0){
+                        alert("please enter your email useing '@,.'");
+                        ema.focus();
+                        return false;
+                }
+                if(ema.indexOf(".",0)<0){
+                    alert("please enter your email useing '@,.'");
+                    ema.focus();
+                    return false;
+                }
+                if(a[1].length!=2){
+                    alert("please after '.' only two character allowed");
+                    ema.focus();
+                    return false;
+                }
+                if(ps.localeCompare(ps1)!=0){
+                    alert("please check comfirm password");
+                    ps1.focus();
+                    return false;
+                }
+                alert("your form was successfully completed")
+                
+                
+            }
+            
+            function myin(){
+                var pas=document.getElementById("pass").value;
+                var pas1=document.getElementById("pass1").value;
+                var x = document.createElement("IMG");
+                ans=pas.localeCompare(pas1);
+                if(ans == 0){
+                    x.setAttribute("src", "green.png");
+                    x.setAttribute("width", "39");
+                    x.setAttribute("height", "30");
+                    document.getElementById("check").innerHTML="";
+                    document.getElementById("check").appendChild(x);
+                    
+                }
+                else{
+                     x.setAttribute("src", "worng.png");
+                    x.setAttribute("width", "39");
+                    x.setAttribute("height", "30");
+                    document.getElementById("check").innerHTML="";
+                     document.getElementById("check").appendChild(x);
+                   
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form name="myfo">
+            <h2>FORM VALIDATION</h2>
+            Firstname: <input type="text" required placeholder="enter the firstname" name="fn"><br>
+            Lastname:  <input type="text" required placeholder="enter the lastname" name="ln"><br>
+            Email ID: <input type="text" placeholder="enter the email id " name="eml"><br>
+            User ID :   <input type="text" reaquired placeholder="enter the user id" name="ud"><br> 
+            password:   <input type="password" required id="pass" name="pa"><br>
+            confirm password:<input type="password" required id="pass1" oninput="myin()" name="pa1">
+            <div id="check"></div>
+            <br>
+            <input type="submit" onclick="my()">
+             
+            
+        </form>
+    </body>
+</html>
+    
